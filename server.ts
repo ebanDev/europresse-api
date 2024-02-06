@@ -1,4 +1,5 @@
 import { Application, Router, Context } from "https://deno.land/x/oak/mod.ts";
+import { oakCors } from "https://deno.land/x/cors/mod.ts";
 import { login, search, article } from "npm:europresse-lib";
 import { CookieJar, Cookie } from "npm:node-fetch-cookies";
 
@@ -67,5 +68,6 @@ router
         }
     });
 
+app.use(oakCors())
 app.use(router.routes());
 await app.listen({ port: PORT });
