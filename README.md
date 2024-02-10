@@ -24,7 +24,7 @@ POST /search
 {
   "query": "query",
   "searchIn: "fullText or title",
-  "dateRange": "allTime or lastWeek or lastMonth or lastYear"
+  "dateRange": "allTime or lastWeek or lastMonth or lastYear",
   "cookies": "cookies"
 }
 
