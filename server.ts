@@ -1,6 +1,6 @@
 import { Application, Router, Context } from "https://deno.land/x/oak/mod.ts";
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
-import { login, search, article } from "https://deno.land/x/europresse_lib@v1.1.1/mod.ts";
+import { login, search, article } from "npm:europresse-lib";
 import { CookieJar, Cookie } from "npm:node-fetch-cookies";
 
 const app = new Application();
