@@ -1,6 +1,6 @@
 import { Application, Router, Context } from "https://deno.land/x/oak/mod.ts";
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
-import { login, search, article } from "npm:europresse-lib";
+import { login, search, article } from "https://deno.land/x/europresse_lib/mod.ts";
 import { CookieJar, Cookie } from "npm:node-fetch-cookies";
 
 const app = new Application();
@@ -51,8 +51,8 @@ router
     })
     .post("/search", async (ctx) => {
         try {
-            const {query, cookies} = await getRequestBody(ctx);
-            ctx.response.body = await search(dictToCookieJar(cookies), query);
+            const {query, searchIn, dateRange, cookies} = await getRequestBody(ctx);
+            ctx.response.body = await search(dictToCookieJar(cookies), query, searchIn, dateRange);
         } catch (e) {
             ctx.response.status = 400;
             ctx.response.body = { error: e.message };
