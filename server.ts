@@ -45,7 +45,7 @@ router
             const { username, password, provider, ent } = await getRequestBody(ctx);
             const loginData = await login(username, password, provider, ent)
             ctx.response.body = {
-                cookieJar: cookieJarToDict(loginData.cookies),
+                cookieJar: cookieJarToDict(loginData.cookieJar),
                 domain: loginData.domain,
             }
         } catch (e) {
