@@ -43,7 +43,11 @@ router
     .post("/login", async (ctx) => {
         try {
             const { username, password, provider, ent } = await getRequestBody(ctx);
-            ctx.response.body = cookieJarToDict(await login(username, password, provider, ent));
+            const loginData = await login(username, password, provider, ent)
+            ctx.response.body = {
+                cookieJar: cookieJarToDict(loginData.cookies),
+                domain: loginData.domain,
+            }
         } catch (e) {
             ctx.response.status = 400;
             ctx.response.body = { error: e.message };
@@ -51,8 +55,8 @@ router
     })
     .post("/search", async (ctx) => {
         try {
-            const {query, searchIn, dateRange, cookies} = await getRequestBody(ctx);
-            ctx.response.body = await search(dictToCookieJar(cookies), query, searchIn, dateRange);
+            const {query, searchIn, dateRange, authData} = await getRequestBody(ctx);
+            ctx.response.body = await search({cookieJar: dictToCookieJar(authData.cookieJar), domain: authData.domain}, query, searchIn, dateRange);
         } catch (e) {
             ctx.response.status = 400;
             ctx.response.body = { error: e.message };
@@ -60,8 +64,8 @@ router
     })
     .post("/article", async (ctx) => {
         try {
-            const { id, cookies } = await getRequestBody(ctx);
-            ctx.response.body = await article(dictToCookieJar(cookies), id, "html");
+            const { id, authData } = await getRequestBody(ctx);
+            ctx.response.body = await article({cookieJar: dictToCookieJar(authData.cookieJar), domain: authData.domain}, id, "html");
         } catch (e) {
             ctx.response.status = 400;
             ctx.response.body = { error: e.message };
