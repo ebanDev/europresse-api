@@ -55,8 +55,8 @@ router
     })
     .post("/search", async (ctx) => {
         try {
-            const {query, searchIn, dateRange, authData} = await getRequestBody(ctx);
-            ctx.response.body = await search({cookieJar: dictToCookieJar(authData.cookieJar), domain: authData.domain}, query, searchIn, dateRange);
+            const {query, searchIn, dateRange, sources, authData} = await getRequestBody(ctx);
+            ctx.response.body = await search({cookieJar: dictToCookieJar(authData.cookieJar), domain: authData.domain}, query, searchIn, dateRange, ["Anglais", "Français"], sources);
         } catch (e) {
             ctx.response.status = 400;
             ctx.response.body = { error: e.message };

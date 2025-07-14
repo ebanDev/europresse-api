@@ -25,12 +25,28 @@ POST /search
   "query": "query",
   "searchIn": "fullText or title",
   "dateRange": "allTime or lastWeek or lastMonth or lastYear",
-  "cookies": "cookies"
+  "sources": ["source1", "source2"],
+  "authData": {
+    "cookieJar": "cookieJar",
+    "domain": "domain"
+  }
 }
 
 POST /article
 {
   "id": "id",
-  "cookies": "cookies"
+  "authData": {
+    "cookieJar": "cookieJar",
+    "domain": "domain"
+  }
+}
+
+POST /sources
+{
+  "query": "query",
+  "authData": {
+    "cookieJar": "cookieJar",
+    "domain": "domain"
+  }
 }
 ```
