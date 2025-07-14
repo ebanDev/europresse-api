@@ -17,9 +17,13 @@ async function login(username: string, password: string, provider: string, ent: 
 }
 
 async function search(query: string, cookies: any) {
-    return await request('search', { query, cookies });
+    return await request('search', { query, authData: cookies });
 }
 
 async function getArticle(id: string, cookies: any) {
-    return await request('article', { id, cookies });
+    return await request('article', { id, authData: cookies });
+}
+
+async function getSources(query: string, cookies: any) {
+    return await request('sources', { query, authData: cookies });
 }
