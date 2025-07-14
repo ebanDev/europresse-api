@@ -1,13 +1,13 @@
 # 🔌 Europresse API
 
-A typescript API for the [europresse-lib](https://github.com/ebanDev/europresse-lib) library.
+A REST API for the [europresse-lib](https://github.com/ebanDev/europresse-lib) library.
 
 Made with Deno and Oak. This project is meant to be deployed on Deno Deploy.
 
 ## Usage
 
 ```bash
-deno run --allow-net --allow-read --allow-env server.ts
+deno run --allow-net --allow-read --allow-env server.ts 
 ```
 
 ```HTTP
